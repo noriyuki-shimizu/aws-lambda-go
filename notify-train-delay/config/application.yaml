@@ -1,0 +1,4 @@
+train:
+    delay:
+        info:
+            url: https://transit.yahoo.co.jp/traininfo/area/4/
