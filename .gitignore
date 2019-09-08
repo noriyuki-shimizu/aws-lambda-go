@@ -16,3 +16,9 @@ bin
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
+
+# application config
+config/*.yml
+
+# intellij plugin
+.idea
