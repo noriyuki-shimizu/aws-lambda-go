@@ -12,4 +12,4 @@
 
 * 以下のリンクから友達情報を登録する
 
-(notify-train-delay line bot)[http://nav.cx/6RCtPVM]
+[notify-train-delay line bot](http://nav.cx/6RCtPVM)
