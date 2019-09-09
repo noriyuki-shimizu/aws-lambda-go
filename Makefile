@@ -1,8 +1,10 @@
 .PHONY: build clean deploy
 
 build:
-	env GOOS=linux go build -ldflags="-s -w" -o bin/hello hello/main.go
-	env GOOS=linux go build -ldflags="-s -w" -o bin/world world/main.go
+	go get github.com/aws/aws-lambda-go/lambda
+	go get github.com/line/line-bot-sdk-go/linebot
+	go get github.com/PuerkitoBio/goquery
+	env GOOS=linux go build -ldflags="-s -w" -o bin/notify-train-delay notify-train-delay/*.go
 
 clean:
 	rm -rf ./bin
