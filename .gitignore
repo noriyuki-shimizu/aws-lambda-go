@@ -22,3 +22,6 @@ config/*.yml
 
 # intellij plugin
 .idea
+
+# swp file
+*.swp
