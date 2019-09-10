@@ -22,6 +22,11 @@ func (t *TrainDelay) Goto(regionalCode string) error {
 	return nil
 }
 
+// GetTitle return string
+func (t *TrainDelay) GetTitle() string {
+	return t.Doc.Find("h1.title").Text()
+}
+
 // GetUpdateDateText return string
 func (t *TrainDelay) GetUpdateDateText() string {
 	return t.Doc.Find("span.subText").Text()

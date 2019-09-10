@@ -15,17 +15,19 @@ func GetTrainDelayText(regionalCode string) string {
 		return template.Information
 	}
 
+	title := trainDelay.GetTitle()
 	updateDateText := trainDelay.GetUpdateDateText()
-	if len(updateDateText) == 0 {
+
+	if len(title) == 0 || len(updateDateText) == 0 {
 		return template.Information
 	}
 
 	trainDelayText := trainDelay.GetTrainDelayText()
 	if len(trainDelayText) == 0 {
-		return serialize([]string{updateDateText, template.NotDelay}...)
+		return serialize([]string{title, updateDateText, template.NotDelay}...)
 	}
 
-	return serialize([]string{updateDateText, trainDelayText}...)
+	return serialize([]string{title, updateDateText, trainDelayText}...)
 }
 
 func serialize(texts ...string) string {
