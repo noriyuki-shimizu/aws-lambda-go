@@ -66,7 +66,7 @@ functions:
     environment:
       CHANNEL_SECRET: ${self:custom.otherfile.environment.${self:provider.stage}.CHANNEL_SECRET}
       CHANNEL_TOKEN: ${self:custom.otherfile.environment.${self:provider.stage}.CHANNEL_TOKEN}
-      TRAININFO_URL: https://transit.yahoo.co.jp/traininfo/area/4/
+      TRAININFO_URL: https://transit.yahoo.co.jp/traininfo/area/
 
     events:
       - http:
