@@ -82,6 +82,6 @@ func (r *Line) EventRouter(eve []*linebot.Event) {
 }
 
 func (r *Line) handleText(message *linebot.TextMessage, replyToken, userID string) {
-	trainDelayText := trainDelay.GetTrainDelayText(message.Text)
+	trainDelayText := trainDelay.TrainDelayHandle(message.Text)
 	r.SendTextMessage(trainDelayText, replyToken)
 }

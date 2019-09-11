@@ -1,39 +1,59 @@
 package trainDelay
 
 import (
-	"strings"
+	"regexp"
 
 	"../template"
 )
 
-// GetTrainDelayText return string
-func GetTrainDelayText(regionalCode string) string {
-	trainDelay := TrainDelay{}
+func isArea(code string) bool {
+	rep := regexp.MustCompile(`^[0-9]*$`)
+	return rep.MatchString(code)
+}
 
-	err := trainDelay.Goto(regionalCode)
+// TrainDelayHandle return string
+func TrainDelayHandle(code string) string {
+	if isArea(code) {
+		return getAreaTrainDelayText(code)
+	}
+	return getRouteTrainDelayText(code)
+}
+
+func getRouteTrainDelayText(routeCode string) string {
+	routeDelay := RouteDelay{}
+
+	err := routeDelay.Goto(routeCode)
 	if err != nil {
 		return template.Information
 	}
 
-	title := trainDelay.GetTitle()
-	updateDateText := trainDelay.GetUpdateDateText()
+	routeTrainDelayText := routeDelay.GetRouteInfo()
+	if len(routeTrainDelayText) == 0 {
+		return template.Information
+	}
+
+	return routeTrainDelayText
+}
+
+func getAreaTrainDelayText(areaCode string) string {
+	areaDelay := AreaDelay{}
+
+	err := areaDelay.Goto(areaCode)
+	if err != nil {
+		return template.Information
+	}
+
+	title := areaDelay.GetTitle()
+	updateDateText := areaDelay.GetUpdateDateText()
 
 	if len(title) == 0 || len(updateDateText) == 0 {
 		return template.Information
 	}
 
-	trainDelayText := trainDelay.GetTrainDelayText()
+	trainDelayText := areaDelay.GetAreaDelayText()
 	if len(trainDelayText) == 0 {
-		return serialize([]string{title, updateDateText, template.NotDelay}...)
+		return Serialize([]string{title, updateDateText, template.NotDelay}...)
 	}
 
-	return serialize([]string{title, updateDateText, trainDelayText}...)
-}
-
-func serialize(texts ...string) string {
-	result := []string{}
-	for _, text := range texts {
-		result = append(result, text)
-	}
-	return strings.Join(result, "\n")
+	return Serialize([]string{title, updateDateText, trainDelayText}...)
 }
