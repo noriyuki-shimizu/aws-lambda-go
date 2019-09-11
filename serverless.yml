@@ -66,7 +66,11 @@ functions:
     environment:
       CHANNEL_SECRET: ${self:custom.otherfile.environment.${self:provider.stage}.CHANNEL_SECRET}
       CHANNEL_TOKEN: ${self:custom.otherfile.environment.${self:provider.stage}.CHANNEL_TOKEN}
-      TRAININFO_URL: https://transit.yahoo.co.jp/traininfo/area/
+      # 遅延情報取得元のサイトURLに関する環境変数
+      TRAININFO_YAHOO_MAIN_URL: https://transit.yahoo.co.jp/
+      TRAININFO_YAHOO_CONTEXT: traininfo/
+      TRAININFO_YAHOO_SUB_AREA: area/
+      TRAININFO_YAHOO_SUB_ROUTE_QUERY: search?q=
 
     events:
       - http:
