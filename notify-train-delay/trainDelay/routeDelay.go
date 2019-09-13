@@ -35,6 +35,9 @@ func (r *RouteDelay) GetRouteInfo() string {
 		url, _ := s.Children().Attr("href")
 		routeLinks = append(routeLinks, url)
 	})
+	if len(routeLinks) >= 15 {
+		return template.TooMuchData
+	}
 
 	routeInfo := []string{}
 	for _, routeLink := range routeLinks {
@@ -51,5 +54,11 @@ func (r *RouteDelay) GetRouteInfo() string {
 		})
 		routeInfo = append(routeInfo, Serialize([]string{title, strings.Join(serviceStatus, "\n") + "\n"}...))
 	}
+
+	routeTrainDelayText := strings.Join(routeInfo, "\n")
+	if len(routeTrainDelayText) == 0 {
+		return template.Information
+	}
+
 	return strings.Join(routeInfo, "\n")
 }
