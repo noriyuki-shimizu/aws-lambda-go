@@ -28,3 +28,6 @@ const Information string = `⚠️
 const NotDelay string = `
 現在、正常に運行しています。
 `
+
+// TooMuchData return string
+const TooMuchData = "路線のヒット数が多すぎます。もう少し具体的な路線名を入力してください。"
