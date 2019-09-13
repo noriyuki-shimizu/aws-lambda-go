@@ -27,12 +27,7 @@ func getRouteTrainDelayText(routeCode string) string {
 		return template.Information
 	}
 
-	routeTrainDelayText := routeDelay.GetRouteInfo()
-	if len(routeTrainDelayText) == 0 {
-		return template.Information
-	}
-
-	return routeTrainDelayText
+	return routeDelay.GetRouteInfo()
 }
 
 func getAreaTrainDelayText(areaCode string) string {
